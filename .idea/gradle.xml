@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/facebook-sdk" />
             <option value="$PROJECT_DIR$/facebook-socialshare" />
+            <option value="$PROJECT_DIR$/google-socialshare" />
           </set>
         </option>
       </GradleProjectSettings>

@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/facebook-sdk/facebook-sdk.iml" filepath="$PROJECT_DIR$/facebook-sdk/facebook-sdk.iml" />
       <module fileurl="file://$PROJECT_DIR$/facebook-socialshare/facebook-socialshare.iml" filepath="$PROJECT_DIR$/facebook-socialshare/facebook-socialshare.iml" />
+      <module fileurl="file://$PROJECT_DIR$/google-socialshare/google-socialshare.iml" filepath="$PROJECT_DIR$/google-socialshare/google-socialshare.iml" />
     </modules>
   </component>
 </project>
