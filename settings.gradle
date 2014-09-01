@@ -1,1 +1,1 @@
-include ':app', ':facebook-sdk', ':facebook-socialshare', ':google-socialshare'
+include ':app', ':facebook-sdk', ':google-socialshare'
