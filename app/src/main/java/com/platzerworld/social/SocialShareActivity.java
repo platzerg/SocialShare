@@ -117,7 +117,9 @@ public class SocialShareActivity extends Activity {
                     for( GooglePlaceBase k: result.getResults() ) {
                         if(k instanceof Place){
                             Place place = (Place) k;
-                            Log.i("GPL", "Name: " +place.getName()
+                            Log.i("GPL",
+                                    "ID: " +place.getId()
+                                    +"Name: " +place.getName()
                                     +" lat: " +place.getGeometry().location.lat
                                     +" lon: " +place.getGeometry().location.lng);
                         }
