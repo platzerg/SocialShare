@@ -43,6 +43,8 @@ public class GoogleSocialShareActivity extends Activity {
             GooglePlaces googlePlaces = new GooglePlaces("AIzaSyD16oJOQ6USd_SKMCjHnLX6Oc8CkXiBpiQ");
             try {
                 res = googlePlaces.getNearbyPlaces(49.240635, 12.673337);
+                // 96b79713bd3e9d0b3dda88cae1595d3952cdbb5f
+                //res = googlePlaces.getPlaceDetails("96b79713bd3e9d0b3dda88cae1595d3952cdbb5f");
                 res.getResults();
             } catch (IOException e) {
                 e.printStackTrace();
