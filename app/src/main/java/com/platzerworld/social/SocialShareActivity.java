@@ -15,7 +15,15 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.platzerworld.google.GoogleSocialShareActivity;
+import com.platzerworld.google.places.GooglePlaces;
+import com.platzerworld.google.places.models.GooglePlaceBase;
+import com.platzerworld.google.places.models.Place;
+import com.platzerworld.google.places.result.PlacesResult;
 import com.platzerworld.google.places.result.Result;
+import com.platzerworld.social.logger.Log;
+import com.platzerworld.social.logger.LogFragment;
+import com.platzerworld.social.logger.LogWrapper;
+import com.platzerworld.social.logger.MessageOnlyLogFilter;
 
 
 public class SocialShareActivity extends Activity {
@@ -27,6 +35,7 @@ public class SocialShareActivity extends Activity {
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction().add(R.id.container, new PlaceholderFragment()).commit();
         }
+        initializeLogging();
     }
 
 
@@ -47,6 +56,24 @@ public class SocialShareActivity extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void initializeLogging() {
+        // Wraps Android's native log framework.
+        LogWrapper logWrapper = new LogWrapper();
+        // Using Log, front-end to the logging chain, emulates android.util.log method signatures.
+        Log.setLogNode(logWrapper);
+
+        // Filter strips out everything except the message text.
+        MessageOnlyLogFilter msgFilter = new MessageOnlyLogFilter();
+        logWrapper.setNext(msgFilter);
+
+        // On screen logging via a fragment with a TextView.
+        LogFragment logFragment = (LogFragment) getFragmentManager()
+                .findFragmentById(R.id.log_fragment);
+        msgFilter.setNext(logFragment.getLogView());
+
+        Log.i("GPL", "Ready");
     }
 
     /**
@@ -86,9 +113,17 @@ public class SocialShareActivity extends Activity {
                     Result result = (Result) data.getExtras().getSerializable("google_places_result");
                     TextView edtResult = (TextView) getView().findViewById(R.id.edtResult);
                     edtResult.setText("GPL: " +result.getResults().size());
+
+                    for( GooglePlaceBase k: result.getResults() ) {
+                        if(k instanceof Place){
+                            Place place = (Place) k;
+                            Log.i("GPL", "Name: " +place.getName()
+                                    +" lat: " +place.getGeometry().location.lat
+                                    +" lon: " +place.getGeometry().location.lng);
+                        }
+                    }
                 }
             }
-
         }
     }
 }

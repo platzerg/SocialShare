@@ -36,10 +36,9 @@ android:background="#FB5820" >
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/edtResult"
-            android:layout_gravity="center_horizontal|top"
-            android:height="300dip" />
+            android:layout_gravity="center_horizontal|top" />
     </LinearLayout>
 
 </LinearLayout>
