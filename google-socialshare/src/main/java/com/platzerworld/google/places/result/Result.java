@@ -3,13 +3,14 @@ package com.platzerworld.google.places.result;
 import com.google.api.client.util.Key;
 import com.platzerworld.google.places.models.GooglePlaceBase;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * @author Giuseppe Mastroeni - aka: Kataklisma E-Mail: m.giuseppe@a2plab.com
  * 
  */
-public abstract class Result {
+public abstract class Result implements Serializable{
 
 	@Key
 	private String status = "";
