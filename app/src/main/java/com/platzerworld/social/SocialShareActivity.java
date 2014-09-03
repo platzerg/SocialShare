@@ -112,7 +112,6 @@ public class SocialShareActivity extends Activity {
                 if (data.hasExtra("google_places_result")) {
                     Result result = (Result) data.getExtras().getSerializable("google_places_result");
                     TextView edtResult = (TextView) getView().findViewById(R.id.edtResult);
-                    edtResult.setText("GPL: " +result.getResults().size());
 
                     for( GooglePlaceBase k: result.getResults() ) {
                         if(k instanceof Place){
@@ -124,6 +123,7 @@ public class SocialShareActivity extends Activity {
                                     +" lon: " +place.getGeometry().location.lng);
                         }
                     }
+                    edtResult.setText( ((Place)result.getResults().get(0)).getPlaceId());
                 }
             }
         }

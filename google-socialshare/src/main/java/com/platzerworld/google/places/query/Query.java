@@ -37,7 +37,7 @@ public abstract class Query {
 	 * @return 
 	 */
 	public Query setSensor(boolean sensor) {
-		queryBuilder.addParameter("sensor", Boolean.toString(sensor));
+		queryBuilder.addParameter("sendor", Boolean.toString(sensor));
 		return this;
 	}
 

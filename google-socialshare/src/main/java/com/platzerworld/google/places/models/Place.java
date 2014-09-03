@@ -3,6 +3,7 @@ package com.platzerworld.google.places.models;
 import com.google.api.client.util.Key;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author Giuseppe Mastroeni - aka: Kataklisma E-Mail: m.giuseppe@a2plab.com
@@ -16,13 +17,19 @@ public class Place implements GooglePlaceBase {
     protected String id;
 
     @Key
+    protected String place_id;
+
+    @Key
     protected String name;
+
+    @Key
+    protected String icon;
 
     @Key
     protected String reference;
 
     @Key
-    protected String icon;
+    protected String scope;
 
     /**
      * Use this for Nearby Search instead formatted_address
@@ -33,6 +40,7 @@ public class Place implements GooglePlaceBase {
     @Key
     protected Geometry geometry;
 
+
     @Key
     protected String formatted_address;
 
@@ -41,9 +49,45 @@ public class Place implements GooglePlaceBase {
         private static final long serialVersionUID = 1670272243139023026L;
         @Key
         public Location location;
+
+        @Key
+        public Viewport viewport;
     }
 
     public static class Location implements Serializable {
+
+        private static final long serialVersionUID = -1932110927792589446L;
+
+        @Key
+        public double lat;
+
+        @Key
+        public double lng;
+    }
+
+    public static class Viewport implements Serializable {
+
+        private static final long serialVersionUID = -1932110927792589446L;
+
+        @Key
+        public Northeast northeast;
+
+        @Key
+        public Southwest southwest;
+    }
+
+    public static class Northeast implements Serializable {
+
+        private static final long serialVersionUID = -1932110927792589446L;
+
+        @Key
+        public double lat;
+
+        @Key
+        public double lng;
+    }
+
+    public static class Southwest implements Serializable {
 
         private static final long serialVersionUID = -1932110927792589446L;
 
@@ -59,6 +103,13 @@ public class Place implements GooglePlaceBase {
      */
     public String getId() {
         return id;
+    }
+
+    /**
+     * @return the place_id
+     */
+    public String getPlaceId() {
+        return place_id;
     }
 
     /**
@@ -87,6 +138,13 @@ public class Place implements GooglePlaceBase {
      */
     public String getVicinity() {
         return vicinity;
+    }
+
+    /**
+     * @return the scope
+     */
+    public String getScope() {
+        return scope;
     }
 
     /**

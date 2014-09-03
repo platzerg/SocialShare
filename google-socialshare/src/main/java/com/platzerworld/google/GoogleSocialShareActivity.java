@@ -9,8 +9,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.platzerworld.google.places.GooglePlaces;
+import com.platzerworld.google.places.models.GooglePlaceBase;
+import com.platzerworld.google.places.models.Place;
 import com.platzerworld.google.places.result.Result;
 
 import java.io.IOException;
@@ -18,11 +21,12 @@ import java.io.IOException;
 
 public class GoogleSocialShareActivity extends Activity {
     static final String TAG = GoogleSocialShareActivity.class.getSimpleName();
-
+    private TextView edtPlacesId = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_google_social_share);
+        edtPlacesId = (TextView) findViewById(R.id.edtPlacesId);
 
         Button btnGetPlaces = (Button) findViewById(R.id.btnGetPlaces);
         btnGetPlaces.setOnClickListener(new View.OnClickListener() {
@@ -43,8 +47,29 @@ public class GoogleSocialShareActivity extends Activity {
             GooglePlaces googlePlaces = new GooglePlaces("AIzaSyD16oJOQ6USd_SKMCjHnLX6Oc8CkXiBpiQ");
             try {
                 res = googlePlaces.getNearbyPlaces(49.240635, 12.673337);
-                // 96b79713bd3e9d0b3dda88cae1595d3952cdbb5f
-                //res = googlePlaces.getPlaceDetails("96b79713bd3e9d0b3dda88cae1595d3952cdbb5f");
+                res.getResults();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return res;
+        }
+
+        @Override
+        protected void onPostExecute(Result result)
+        {
+            Log.d(TAG, result.getResults().toString());
+            finishActivity(result);
+        }
+    }
+
+    class GetPlaceDetail extends AsyncTask<String, Void, Result> {
+        @Override
+        protected Result doInBackground(String... params) {
+            Result res = null;
+            GooglePlaces googlePlaces = new GooglePlaces("AIzaSyD16oJOQ6USd_SKMCjHnLX6Oc8CkXiBpiQ");
+            try {
+                // "ChIJN1t_tDeuEmsRUsoyG83frY4"
+                res = googlePlaces.getPlaceDetails(params[0]);
                 res.getResults();
             } catch (IOException e) {
                 e.printStackTrace();

@@ -8,18 +8,18 @@ public class DetailsQuery extends Query {
 
 	/**
 	 * @param apiKey
-	 * @param reference
+	 * @param placeid
 	 */
-	public DetailsQuery(String apiKey, String reference) {
+	public DetailsQuery(String apiKey, String placeid) {
 		super(apiKey);
-		setReference(reference);
+		setReference(placeid);
 	}
 
 	/**
 	 * @param reference
 	 */
 	public DetailsQuery setReference(String reference) {
-		queryBuilder.addParameter("reference", reference);
+		queryBuilder.addParameter("placeid", reference);
 		return this;
 	}
 
