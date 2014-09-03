@@ -4,10 +4,18 @@ import android.location.Location;
 
 public class TextSearchQuery extends SearchQuery {
 
-	public TextSearchQuery(String apiKey, String query, boolean sensor) {
+	public TextSearchQuery(String apiKey, String query, int radius, double lat, double lon, boolean sensor) {
 		super(apiKey);
+        setRadius(radius);
+        setLocation(lat, lon);
 		setQuery(query);
 	}
+
+    public TextSearchQuery(String apiKey, String query, boolean sensor) {
+        super(apiKey);
+        setQuery(query);
+    }
+
 
 	/*
 	 * Set location and set required parameter "radius" to default value 2500.

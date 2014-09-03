@@ -32,8 +32,11 @@ public class GoogleSocialShareActivity extends Activity {
         btnGetPlaces.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GetNearbyPlaces placesTask = new GetNearbyPlaces();
-                placesTask.execute("Cham");
+                // GetNearbyPlaces placesTask = new GetNearbyPlaces();
+                // placesTask.execute("Cham");
+
+                GetTextSearch textSearch = new GetTextSearch();
+                textSearch.execute("Biergarten");
             }
         });
 
@@ -70,6 +73,29 @@ public class GoogleSocialShareActivity extends Activity {
             try {
                 // "ChIJN1t_tDeuEmsRUsoyG83frY4"
                 res = googlePlaces.getPlaceDetails(params[0]);
+                res.getResults();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return res;
+        }
+
+        @Override
+        protected void onPostExecute(Result s)
+        {
+            Log.d(TAG, s.getResults().toString());
+            finishActivity(s);
+        }
+    }
+
+    class GetTextSearch extends AsyncTask<String, Void, Result> {
+        @Override
+        protected Result doInBackground(String... params) {
+            Result res = null;
+            GooglePlaces googlePlaces = new GooglePlaces("AIzaSyD16oJOQ6USd_SKMCjHnLX6Oc8CkXiBpiQ");
+            try {
+                // "ChIJN1t_tDeuEmsRUsoyG83frY4"
+                res = googlePlaces.getTextPlaces(params[0], 5000, 49.240635, 12.673337, true);
                 res.getResults();
             } catch (IOException e) {
                 e.printStackTrace();

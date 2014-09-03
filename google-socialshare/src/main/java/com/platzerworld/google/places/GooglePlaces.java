@@ -149,6 +149,23 @@ public class GooglePlaces {
 
     /**
      * TextSearch with sensor choice
+     *
+     * @param searchText
+     * @param radius
+     * @param lat
+     * @param lon
+     * @param sensor
+     * @return
+     * @throws org.apache.http.client.ClientProtocolException
+     * @throws org.json.JSONException
+     * @throws java.io.IOException
+     */
+    public Result getTextPlaces(String searchText, int radius, double lat, double lon, boolean sensor) throws IOException {
+        return getPlaces(new TextSearchQuery(mApiKey, searchText, radius, lat, lon, sensor));
+    }
+
+    /**
+     * TextSearch with sensor choice
      * 
      * @param searchText
      * @return
