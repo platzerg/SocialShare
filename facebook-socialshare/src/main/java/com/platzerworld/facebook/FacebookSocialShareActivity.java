@@ -3,14 +3,20 @@ package com.platzerworld.facebook;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import android.widget.Button;
 
+import com.platzerworld.facebook.utils.fragments.MainFragment;
 
 
 public class FacebookSocialShareActivity extends Activity {
@@ -20,7 +26,7 @@ public class FacebookSocialShareActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_facebook_social_share);
         if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction().add(R.id.container, new PlaceholderFragment()).commit();
+            getFragmentManager().beginTransaction().add(R.id.container, new MainFragment()).commit();
         }
     }
 
@@ -55,7 +61,25 @@ public class FacebookSocialShareActivity extends Activity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_facebook_social_share, container, false);
+
+            Button btnStartFB = (Button) rootView.findViewById(R.id.btnStartFB);
+            btnStartFB.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startFB();
+                }
+            });
+
             return rootView;
+        }
+
+        private void startFB(){
+            try {
+
+            }
+            catch (Exception e) {
+                Log.e("", "Failed to add fragment", e);
+            }
         }
     }
 }

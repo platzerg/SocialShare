@@ -1,7 +1,7 @@
 package com.platzerworld.facebook.utils.fragments;
 
+import android.app.Fragment;
 import android.app.ProgressDialog;
-import android.support.v4.app.Fragment;
 
 public class BaseFragment extends Fragment {
 

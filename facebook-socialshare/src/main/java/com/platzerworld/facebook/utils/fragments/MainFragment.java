@@ -1,9 +1,10 @@
 package com.platzerworld.facebook.utils.fragments;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,7 +41,7 @@ public class MainFragment extends Fragment implements OnItemClickListener{
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		mSimpleFacebook = SimpleFacebook.getInstance();
+		mSimpleFacebook = SimpleFacebook.getInstance(this.getActivity());
 		
 		mExamples = new ArrayList<Example>();
 		//mExamples.add(new Example("Requests", null));
@@ -91,8 +92,15 @@ public class MainFragment extends Fragment implements OnItemClickListener{
 	@Override
 	public void onResume() {
 		super.onResume();
+        mSimpleFacebook = SimpleFacebook.getInstance(this.getActivity());
 		getActivity().setTitle("Simple Facebook Sample");
 	}
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mSimpleFacebook.onActivityResult(this.getActivity(), requestCode, resultCode, data);
+    }
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
