@@ -20,6 +20,12 @@ android:background="#FB5820" >
             android:text="start Google Places"
             android:id="@+id/btnStartGooglePlaces" />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="start Facebook"
+            android:id="@+id/btnStartFacebook" />
+
 
     </LinearLayout>
 

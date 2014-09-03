@@ -87,6 +87,7 @@
     <orderEntry type="library" exported="" name="jackson-databind-2.1.4" level="project" />
     <orderEntry type="library" exported="" name="jackson-annotations-2.1.4" level="project" />
     <orderEntry type="module" module-name="google-socialshare" exported="" />
+    <orderEntry type="module" module-name="facebook-socialshare" exported="" />
   </component>
 </module>
 

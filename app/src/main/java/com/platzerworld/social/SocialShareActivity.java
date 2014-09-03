@@ -14,6 +14,7 @@ import android.os.Build;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.platzerworld.facebook.FacebookSocialShareActivity;
 import com.platzerworld.google.GoogleSocialShareActivity;
 import com.platzerworld.google.places.GooglePlaces;
 import com.platzerworld.google.places.models.GooglePlaceBase;
@@ -96,12 +97,27 @@ public class SocialShareActivity extends Activity {
                     startGooglePlaces();
                 }
             });
+
+            Button btnStartFacebook = (Button) rootView.findViewById(R.id.btnStartFacebook);
+            btnStartFacebook.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startFacebook();
+                }
+            });
+
             return rootView;
         }
         private void startGooglePlaces(){
             Intent startGooglePlaceIntent = new Intent(getActivity().getApplicationContext(), GoogleSocialShareActivity.class);
             Bundle bundle = new Bundle();
             startActivityForResult(startGooglePlaceIntent, 0, bundle);
+        }
+
+        private void startFacebook(){
+            Intent startFacebookIntent = new Intent(getActivity().getApplicationContext(), FacebookSocialShareActivity.class);
+            Bundle bundle = new Bundle();
+            startActivityForResult(startFacebookIntent, 1, bundle);
         }
 
         @Override
@@ -124,6 +140,12 @@ public class SocialShareActivity extends Activity {
                         }
                     }
                     edtResult.setText( ((Place)result.getResults().get(0)).getPlaceId());
+                }
+            }
+            else if (resultCode == RESULT_OK && requestCode == 1)
+            {
+                if (data.hasExtra("google_places_result")) {
+
                 }
             }
         }
